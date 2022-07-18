@@ -1,0 +1,21 @@
+body{
+    background: url('../img/uno.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+header{
+    margin: auto;
+    text-align: center;
+}
+
+h1{
+    
+    
+    background-color: yellow;
+    font-size: 50px;
+    font-weight: 200;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-style: oblique;
+    text-transform: uppercase;
+    display: inline-block;
+}
