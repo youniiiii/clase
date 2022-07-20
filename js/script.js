@@ -9,11 +9,12 @@ let sexo = prompt('ingresa tu genero');
 
 const mujer = 'mujer';
 const hombre = 'hombre';
+ let altura2 =(altura*altura);
+ let resultado = parseInt(peso/ altura2);
 
-   let altura2 =(altura*altura);
-   let resultado = parseInt(peso/ altura2);
-
-
+ function menor(){
+   alert('solo es para mayores de 18 años');
+ }
 if( mujer === sexo ){
    let edad = prompt('ingresa tu edad');
    if(edad>18){
@@ -29,17 +30,15 @@ if( mujer === sexo ){
  
    }else if(edad<18){
 
-         alert('solo es para mayores de 18 años');
+      menor();
       }
 }else if(hombre === sexo){ 
-
    let edad = prompt('ingresa tu edad');
-
       if(edad>18){
 
          if (resultado>20 && resultado<23){
    
-             alert('tu imc es normal: '+ resultado);
+              alert('tu imc es normal: '+ resultado);
    
          }else if(resultado>23){
    
@@ -47,9 +46,9 @@ if( mujer === sexo ){
    
          }
     
-      }else if(edad<18){
-   
-         alert('solo es para mayores de 18 años');
+      }else if(edad<18){ 
+         menor();
+        
       }
 
 }else{
