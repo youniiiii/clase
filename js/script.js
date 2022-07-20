@@ -1,15 +1,57 @@
-let numeroTabla = parseInt(prompt('ingrese la tabla de multiplicar que quiere ver'));
+alert('analizaremos tu salud');
 
-if(numeroTabla >= 0 && numeroTabla <= 10){
+let nombre = prompt('ingresa tu nombre');
+let apellido = prompt('ingresa tu apellido');
+
+let peso = prompt('ingresa tu peso');
+let altura = prompt('ingresa tu altura');
+let sexo = prompt('ingresa tu genero');
+
+const mujer = 'mujer';
+const hombre = 'hombre';
+
+   let altura2 =(altura*altura);
+   let resultado = parseInt(peso/ altura2);
+
+
+if( mujer === sexo ){
+   let edad = prompt('ingresa tu edad');
+   if(edad>18){
+      if (resultado>20 && resultado<23){
+
+          alert('tu imc es normal: '+ resultado);
+
+      }else if(resultado>23){
+
+         alert(nombre+' '+ apellido +' obesidad leve su imc es : '+ resultado);
+
+      }
+ 
+   }else if(edad<18){
+
+         alert('solo es para mayores de 18 años');
+      }
+}else if(hombre === sexo){ 
+
+   let edad = prompt('ingresa tu edad');
+
+      if(edad>18){
+
+         if (resultado>20 && resultado<23){
+   
+             alert('tu imc es normal: '+ resultado);
+   
+         }else if(resultado>23){
+   
+            alert(nombre+' '+ apellido +' obesidad leve su imc es : '+ resultado);
+   
+         }
     
-    for (let i = 1 ; i <=10 ; i++) {
+      }else if(edad<18){
+   
+         alert('solo es para mayores de 18 años');
+      }
 
-    let resultado = (  i*numeroTabla);
-
-   alert ('tabla de  :  ' + numeroTabla + ' x ' + i + ' = ' +   resultado );
-
-}
 }else{
-     alert('el numero ingresado es incorrecto');
-    }
- echo ('gracias por consultar');
+alert('por favor ingrese su genero hombre o mujer');
+}
