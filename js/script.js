@@ -1,56 +1,62 @@
-alert('analizaremos tu salud');
+//alert('compra de una entrada de boliche <br> solo tiene  tres intentos');
 
-let nombre = prompt('ingresa tu nombre');
-let apellido = prompt('ingresa tu apellido');
 
-let peso = prompt('ingresa tu peso');
-let altura = prompt('ingresa tu altura');
-let sexo = prompt('ingresa tu genero');
+let nombre1 = document.getElementById('#nombre').value;
+let apellido1 = document.getElementById('#apellido').value;
+let edad1 = document.getElementById('#edad').value;
+let dinero1 = document.getElementById('#pagar').value;
+let entradas1 = document.getElementById('#entradas').value;
 
-const mujer = 'mujer';
-const hombre = 'hombre';
- let altura2 =(altura*altura);
- let resultado = parseInt(peso/ altura2);
+const precio = 300;
 
- function menor(){
-   alert('solo es para mayores de 18 años');
- }
-if( mujer === sexo ){
-   let edad = prompt('ingresa tu edad');
-   if(edad>18){
-      if (resultado>20 && resultado<23){
-
-          alert('tu imc es normal: '+ resultado);
-
-      }else if(resultado>23){
-
-         alert(nombre+' '+ apellido +' obesidad leve su imc es : '+ resultado);
-
-      }
- 
-   }else if(edad<18){
-
-      menor();
-      }
-}else if(hombre === sexo){ 
-   let edad = prompt('ingresa tu edad');
-      if(edad>18){
-
-         if (resultado>20 && resultado<23){
-   
-              alert('tu imc es normal: '+ resultado);
-   
-         }else if(resultado>23){
-   
-            alert(nombre+' '+ apellido +' obesidad leve su imc es : '+ resultado);
-   
-         }
-    
-      }else if(edad<18){ 
-         menor();
-        
-      }
-
-}else{
-alert('por favor ingrese su genero hombre o mujer');
+function resta(n, nn) {
+   resultado = n - nn;
+   return resultado;
 }
+
+
+const teket = {
+   nombre: 'nombre',
+   apellido: 'apellido',
+   edad: 'edad',
+   vuelto: 'vuelto'
+}
+
+for (let i = 0; i < 3; i++) {
+
+   if (edad1 > 18 && entradas1 <= 3 && dinero1 > precio) {
+   }
+}
+
+
+function saltearlinia() { document.write("<br>") }
+function mostrar(frase) {
+   document.write(frase); saltearlinia()
+}
+function solicitar(dato) {
+   var solicitud = prompt(dato)
+}
+
+contraseha = solicitar("porfavor dicte su contraseña");
+usuario = solicitar("porfavor dictesu usuario")
+var contra = "master"
+var usuar = "master"
+
+if (contra == contraseha && usuar == usuario) {
+   mostrar("  bienvenido")
+   mostrar("  usaste esta contraseña  " + contra + " y este  usuari  " + usuar)
+}
+
+
+else {
+
+   mostrar(" incorreecto usaste una contraseña  erronea desiste usar esto " + usuario + "  y  la contraseña " + contraseha);
+   mostrar("intentalo mas tarde")
+}
+
+
+
+
+
+
+

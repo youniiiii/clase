@@ -1,26 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clase 1</title>
-    <link rel="stylesheet" href="./css/styles.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clase </title>
+  <link rel="stylesheet" href="./css/styles.css">
 </head>
+
 <body>
 
-    <header>
+  <header>
     <h1>
-        tu tabla
+      boleteria
     </h1>
-    </header>
-    <main>
+  </header>
+  <main>
+    <form action="" method="get">
+      <fieldset>
+        <legend>
+          <h2>valor de la entrada $300 maximo:3</h2>
+        </legend>
+        <label for="nombre">nombre</label>
+        <input type="text" name="nombre" id="nombre" placeholder="nombre" required>
 
-    </main>
-    <footer>
+        <label for="apellido">apellido</label>
+        <input type="text" name="apellido" id="apellido" placeholder="apellido" required>
 
-    </footer>
+        <label for="edad">edad</label>
+        <input type="number" name="edad" id="edad" placeholder="edad" required>
 
-<script src="./js/script.js"></script>
+        <label for="entradas">cantidad de entradas</label>
+        <input type="number" name="entradas" id="entradas" placeholder="entradas" required>
+
+        <label for="pagar">con cuanto pagaras</label>
+        <input type="number" name="pagar" id="pagar" placeholder="pagar" required>
+
+        <input type="submit" name="enviar" id="btn" value="comprar">
+      </fieldset>
+    </form>
+
+    <div class="cja">
+
+      <h1>tu entrada</h1>
+      <h2>nombre: <strong>nombre</strong></h2>
+      <h2>apellido: <strong>apellido</strong></h2>
+      <h2>edad: <strong>edad</strong></h2>
+      <h2>entradas: <strong>entradas</strong></h2>
+      <h2>vuelto: <strong>vuelto</strong></h2>
+    </div>
+
+  </main>
+  <footer>
+
+  </footer>
+
+  <script src="./js/script.js"></script>
 </body>
+
 </html>
