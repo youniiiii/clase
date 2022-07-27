@@ -33,28 +33,45 @@ function mostrar(frase) {
    document.write(frase); saltearlinia();
 }
 
+let user = ['master', 'yoni', 'admin'];
+let pass = ['master', 'yoni','admin' ];
 
-
-
+function regreso() {
+}
 let limite = 3;
- const pass = 'master';
-const user = 'master';
-for (let i = 0; i < limite; i++) {
-  let contraseha = prompt("porfavor dicte su contraseña");
-  let usuario = prompt("porfavor dicte su usuario");
+
+
+
+
+for (let i = 0; i < pass.length; i++) {
+
+   let contraseha = prompt("porfavor dicte su contraseña");
+   let usuario = prompt("porfavor dicte su usuario");
    let resta = limite - i;
    alert('LE QUEDA ' + resta + ' intentos ');
-    mostrar(limite - i);
-   if (pass == contraseha && user == usuario) {
-      mostrar("  bienvenido " + user);
-      break;
+   mostrar(limite - i);
+   for (let io = 0; io < pass.length; io++) {
+      const pos = pass[io];
+      const contra = user[io] ;
+   if (pos == contraseha && contra == usuario) {
+      mostrar("  bienvenido " + contra);
+      
    } else {
-      mostrar(" incorrecto usaste una contraseña  erronea debiste usar esto " + user + "  y  la contraseña " + pass);
+      mostrar(" incorrecto usaste una contraseña  erronea debiste usar esto " + contra + "  y  la contraseña " + pos);
       mostrar("intentalo mas tarde")
 
    }
-  
+   break;
+   }
+   break;
+   
+
 }
+
+
+
+
+
 
 
 
