@@ -4,8 +4,8 @@
 }
 
 body {
-  background: rgb(0, 28, 188);
-  background: url('../img/uno.jpg');
+  background: rgb(243, 244, 252);
+/*  background: url('../img/uno.jpg');**/
   background-size: cover;
   background-attachment: fixed;
 }
