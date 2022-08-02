@@ -1,32 +1,3 @@
-//alert('compra de una entrada de boliche <br> solo tiene  tres intentos');
-
-
-////let apellido1 = document.getElementById('#apellido').value;
-//let edad1 = document.getElementById('#edad').value;
-//let dinero1 = document.getElementById('#pagar').value;
-//let entradas1 = document.getElementById('#entradas').value;
-
-//const precio = 300;
-
-//function resta(n, nn) {
-// resultado = n - nn;
-// return resultado;
-//}
-
-
-//const teket = {
-//   nombre: 'nombre',
-//   apellido: 'apellido',
-//   edad: 'edad',
-//   vuelto: 'vuelto'
-//}
-
-//for (let i = 0; i < 3; i++) {
-
-// if (edad1 > 18 && entradas1 <= 3 && dinero1 > precio) {
-// }
-//}
-
 
 function saltearlinia() { document.write("<br>") }
 function mostrar(frase) {
@@ -38,8 +9,6 @@ let pass = ['master', 'yoni', 'admin'];
 
 
 let limite = 3;
-
-
 
 
 for (let i = 0; i < pass.length; i++) {
@@ -63,5 +32,3 @@ for (let i = 0; i < pass.length; i++) {
       }break;
    }
 }
-
-

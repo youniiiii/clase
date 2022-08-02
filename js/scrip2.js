@@ -16,8 +16,8 @@ if (usuario == user && pass == passw) {
 } else {
     alert('no estas mal');
 }
-class Libro {
 
+class Libro {
     constructor(titulo, autor, anio, genero, valoracion, id) {
         this.titulo = titulo;
         this.autor = autor;
@@ -26,116 +26,86 @@ class Libro {
         this.valoracion = parseInt(valoracion);
         this.id = id;
     }
-
     asignarId(array) {
         this.id = array.length;
     }
-
     valorar(valoracion) {
         this.valoracion = valoracion;
     }
 
 
 }
+const Libross = [
 
-const libros = [
-    new Libro('American Gods', 'Neil Gaiman', 2001, 'Fantasía', 6, 1),
-    new Libro('Némesis', 'Agatha Christie', 1971, 'Misterio', 8, 2),
-    new Libro('Los elefantes pueden recordar', 'Agatha Christie', 1972, 'Misterio', 7, 3),
-    new Libro('David Copperfield', 'Charles Dickens', 1950, 'Novela', 8, 4),
-    new Libro('Narciso y Golmundo', 'Hermann Hesse', 1930, 'Novela', 9, 5),
-    new Libro('Los Borgia', 'Mario Puzo', 2001, 'Novela histórica', 9, 6),
-    new Libro('El Hobbit', 'J.R.R. Tolkien', 1937, 'Novela fantástica', 10, 7)
+    new Libro('juan jose', 'movidick', 2001, 'ficcion', 6, 1),
+    new Libro('aame', 'agaiman', 1, 'accion', 16, 11),
+    new Libro('american jggod', 'neil gajiman', 20101, 'ficckjion', 62, 21),
+    new Libro('americanj god', 'j gaiman', 1211, 'ficckion', 61, 31)
+
 ]
 
-console.log(libros);
 
-
-//--------------------Pedir que se ingresen libros nuevos y sumarlos al array-----------------------//
 let continuar = true;
 
 while (continuar) {
-    let ingreso = prompt('Ingresa los datos del libro: titulo, autor, año, género, puntaje de 1 a 10, separados por una barra diagonal (/). Ingresa X para finalizar');
-
-    if (ingreso.toUpperCase() == 'X') {
+    let ingreso = prompt('datos');
+    if (ingreso.toUpperCase() == 'x') {
         continuar = false;
         break;
     }
-
     let datos = ingreso.split('/');
-    const libro = new Libro(datos[0], datos[1], datos[2], datos[3], datos[4]);
+    const Libro = new Libro(datos[0], datos[1], datos[2], datos[3], datos[4]);
+    Libross.push(Libro);
+    Libro.asignarId(Libross);
+}
 
-    libros.push(libro);
-
-    libro.asignarId(libros);
-
-    console.log(libros)
-} 
-//------------------Fin de pedir que se ingresen libros nuevos y sumarlos al array---------------------//
-
-
-//--------------------------Ordenar el array de acuerdo a lo que se elija-----------------------------//
-
-let criterio = prompt('Elegí el criterio deseado:\n1 - Título (A a Z) \n2 - Título (Z a A)\n3 - Mejor a peor puntuado \n4 - Fecha de publicación (Más viejo a más nuevo)');
+let criterio = prompt('especificar\n1 - titulp (a a z) \n2 - titulo (z a a)\n3 - mejor  poer puntuado \n4 - fecha de puublivavion( mas vieja)  ')
 
 function ordenar(criterio, array) {
-    let arrayOrdenado = array.slice(0);
+    let arrayordenado = array.slice(0);
     switch (criterio) {
         case '1':
-            let nombreAscendente = arrayOrdenado.sort((a,b)=>a.titulo.localeCompare(b.titulo));
-            return nombreAscendente;
+            let nombreasendiente = arrayordenado.sort((a, b) => a.titulo.localeCompare(b.titulo));
+            return nombreasendiente;
         case '2':
-            let nombreDescendente = arrayOrdenado.sort((a, b) => b.titulo.localeCompare(a.titulo));
-            return nombreDescendente;
+            let nombredesendiente = arrayordenado.sort((a, b) => b.titulo.localeCompare(a.titulo));
+            return nombredesendiente;
         case '3':
-            return arrayOrdenado.sort((a, b) => b.valoracion - a.valoracion);
+            return arrayordenado.sort((a, b) => b.valoracion - a.valoracion);
         case '4':
-            return arrayOrdenado.sort((a, b) => a.anio - b.anio);
+            return arrayordenado.sort((a, b) => b.anio - a.anio);
         default:
-            alert('No es un criterio válido');
+            alert('criterio de la linia no valido');
             break;
     }
+
+
 }
 
-//----------------------Fin de ordenar el array de acuerdo a lo que se elija----------------------//
 
-function crearStringResultado(array){
+
+function mostrar(array) {
     let info = '';
+    array.forEach(element => {
+        info += 'titulo :' + element.titulo + '\nAutor :' + element.autor + '\nAÑO de publicaion :' + element.anio + '\nvaloracion :' + element.valoracion + 'puntos.\n\n'
+    });
 
-    array.forEach(elemento=>{
-        info += 'Título: ' + elemento.titulo + '\nAutor: ' + elemento.autor + '\nAño de publicación: ' + elemento.anio + '\nValoración: ' + elemento.valoracion + ' puntos.\n\n'
-    })
-    return info;
+
 }
 
-//--------------------------Fin de crear el string con los resultados-----------------------------//
-
-alert(crearStringResultado(ordenar(criterio,libros)));
-
-
-
-//--------------------------Filtrar libros de acuerdo al autor-----------------------------//
-let autorElegido = prompt('Escribí el nombre del autor para que te mostremos sus libros');
-
-const filtrado = libros.filter((libro)=>libro.autor.toLowerCase().includes(autorElegido.toLowerCase()))
-//----------------------Fin de filtrar libros de acuerdo al autor-------------------------//
-
-
-//--------------------------Mostrar libros filtrado de acuerdo al autor-----------------------------//
-
-if (filtrado.length==0){
-    alert('Lo sentimos. No encontramos coincidencias en nuestro catálogo');
-}else{
-    const imprimible = filtrado.map((libro)=>libro.titulo);
-    alert('Loslibros de nuestro catálogo, de autores que coinciden parcial o totalmente con esta búsqueda, son:\n- ' + imprimible.join('\n- '));
+alert(crearSreingResultado(ordenar(criterio, Libross)));
+let autorelegido = prompt(' escribi un libro');
+const filtrado = Libross.filter((Libro) => Libro.autor.toLowerCase().includes(autorelegido.toLowerCase()));
+if (filtrado.length == 0) {
+    alert('lo sentimos no encontramos el libnro');
+} else {
+    const imprimime = filtrado.map((Libro) => Libro.titulo);
+    alert('loslibros  de nuesto catalogo, de autores ')
 }
-//----------------------Fin de mostrar libros filtrado de acuerdo al autor-------------------------//
 
-/* Cosas a mejorar:
-1 -Que podamos volver a elegir un criterio de ordenamiento una vez que vimos el primer resultado del sort
-2 -que podamos volver a elegir un autor una vez que vimos el primer resultado del filter.
-Ambas cuestiones se pueden resolver con ciclos condicionales
-3 -La forma de asignar el id, habría que tener en cuenta la posibilidad de que se hayan eliminado elementos */
+
+
+
 
 
 
