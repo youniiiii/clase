@@ -69,8 +69,8 @@ let usuario = [{
 let miCja = document.getElementById('contenedor');
 class cargar {
 
-    constructor(nombre, precio, codigo, imagen) {
-        this.id = id; 
+    constructor(nombre, precio, codigo, imagen,id) {
+        this.id = id;
         this.nombre = nombre;
         this.precio = precio;
         this.codigo = codigo;
@@ -84,56 +84,79 @@ class cargar {
 
 let cliente = prompt('sos cliente si o no');
 let clientes = 'si';
-
+const card = document.createElement('div');
 
 if (cliente.toLowerCase() == clientes) {
     let entrada = prompt('que prenda busca');
 
-let resaltado = usuario.filter((ele)=>{return ele.nombre.toLowerCase() == entrada.toLowerCase() } );
-console.log(resaltado);
-const card = document.createElement('div');
+    let resaltado = usuario.filter((ele) => { return ele.nombre.toLowerCase() == entrada.toLowerCase() });
+    console.log(resaltado);
+
     if (resaltado) {
-       
+
         let comprar = prompt('desea comprarla');
         if (comprar == 'si') {
-               card.innerHTML = `
+            card.innerHTML = `
                     <h4 class="titulo">${resaltado[0].nombre}</h4>
                     <img src=" ${resaltado[0].imagen}" class="" width="400px" height="500px"  alt="">
                     <div class="card-body">
                         <span id="precio">$ ${resaltado[0].precio}</span>
                     </div>
-                    <div class="card-footer"><a href="#" class="btn btn-primary">Comprar</a></div>`;
-                miCja.append(card);
+                    <div class="card-footer">
+                    <a href="#" class="btn btn-primary">gracias por comprar</a></div>`;
+            miCja.append(card);
         } else {
-            alert('gracias por visitarnos');
+            card.innerHTML = `
+              <h4 class="titulo">gracias por visitarnos</h4>
+            <img src="https://memegenerator.net/img/instances/85503550.jpg" class="" width="400px" height="500px"  alt="">
+            `;
+            miCja.append(card);
         }
     } else {
-        let mensaje1 = 'no tenemos ese artticulo';
-        alert(mensaje1);
+        card.innerHTML = `
+        <h4 class="titulo">no tenemos ese artticulo</h4>
+      <img src="https://memegenerator.net/img/instances/85503550.jpg" class="" width="400px" height="500px"  alt="">
+      `;
+        miCja.append(card);
     }
 
 } else if (cliente == 'no') {
-    alert(' vende y ingresa tus productos');
-let continuar = true;
+    card.innerHTML = `
+    <h4 class="titulo">vende y ingresa tus productosno</h4>
+  <img src="https://cdn.palbincdn.com/images/blog/gallery/vender-comida-por-internet@x1600--s1.png" class="" width="400px" height="500px"  alt="">
+  `;
+    miCja.append(card);
+    let continuar = true;
 
-while (continuar) {
+    while (continuar) {
 
-    let ingreso = prompt('Ingresa nombre, precio, codigo, imagen separados por (/). Ingresa X para finalizar');
+        let ingreso = prompt('Ingresa nombre, precio, codigo, imagen separados por (*). Ingresa X para finalizar');
 
-    if (ingreso.toUpperCase() == 'X') {
-        continuar = false;
-        break;
+        if (ingreso.toUpperCase() == 'X') {
+            continuar = false;
+            break;
+        }
+        let datos = ingreso.split('*');
+
+        const vendedor = new cargar(datos[0], datos[1], datos[2], datos[3]);
+
+        usuario.push(vendedor);
+
+        vendedor.asignarId(usuario);
+
+
+
+        card.innerHTML = `
+    <h4 class="titulo">${vendedor.nombre}</h4>
+    <img src=" ${vendedor.imagen}" class="" width="400px" height="500px"  alt="">
+    <div class="card-body">
+        <span id="precio">$ ${vendedor.precio}</span>
+    </div>
+    <div class="card-footer">
+    <a href="#" class="btn btn-primary">gracias por vender</a></div>`;
+        miCja.append(card);
+
     }
-
-    let datos = ingreso.split('/');
-    
-    const vendedor = new cargar(datos[0], datos[1], datos[2], datos[3]);
-
-    usuario.push(vendedor);
-
-    vendedor.asignarId(usuario);
-
-} 
 
 }
 
