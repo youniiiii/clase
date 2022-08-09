@@ -66,10 +66,12 @@ let usuario = [{
     precio: 134999,
     imagen: './img/carpa.png'
 }];
+function refrescar() {location.reload();}
+
 let miCja = document.getElementById('contenedor');
 class cargar {
 
-    constructor(nombre, precio, codigo, imagen,id) {
+    constructor(nombre, precio, codigo, imagen, id) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
@@ -80,83 +82,114 @@ class cargar {
         this.id = array.length;
     }
 }
-
-
-let cliente = prompt('sos cliente si o no');
-let clientes = 'si';
 const card = document.createElement('div');
+let ver = document.getElementById('catalogo');
+let buscar = document.getElementById('btnbuscar');
+let vender = document.getElementById('btnvender');
 
-if (cliente.toLowerCase() == clientes) {
-    let entrada = prompt('que prenda busca');
 
-    let resaltado = usuario.filter((ele) => { return ele.nombre.toLowerCase() == entrada.toLowerCase() });
-    console.log(resaltado);
-
-    if (resaltado) {
-
-        let comprar = prompt('desea comprarla');
-        if (comprar == 'si') {
-            card.innerHTML = `
-                    <h4 class="titulo">${resaltado[0].nombre}</h4>
-                    <img src=" ${resaltado[0].imagen}" class="" width="400px" height="500px"  alt="">
-                    <div class="card-body">
-                        <span id="precio">$ ${resaltado[0].precio}</span>
-                    </div>
-                    <div class="card-footer">
-                    <a href="#" class="btn btn-primary">gracias por comprar</a></div>`;
-            miCja.append(card);
-        } else {
-            card.innerHTML = `
-              <h4 class="titulo">gracias por visitarnos</h4>
-            <img src="https://memegenerator.net/img/instances/85503550.jpg" class="" width="400px" height="500px"  alt="">
-            `;
-            miCja.append(card);
-        }
-    } else {
-        card.innerHTML = `
-        <h4 class="titulo">no tenemos ese artticulo</h4>
-      <img src="https://memegenerator.net/img/instances/85503550.jpg" class="" width="400px" height="500px"  alt="">
-      `;
-        miCja.append(card);
-    }
-
-} else if (cliente == 'no') {
-    card.innerHTML = `
+vender.addEventListener('click', () => {
+    const card0 = document.createElement('div');
+    const card1 = document.createElement('div');
+    card0.innerHTML = `
+     <ul class="vender">
+    <li>
+      <input type="text" id="titulo" placeholder="titulo"required>
+    </li>
+    <li>
+      <input type="number" id="precio" placeholder="precio"required>
+    </li>
+    <li>
+    <input type="number" id="codigo" placeholder="codigo"required>
+  </li>
+    <li>
+      <input type="url" id="imagen" placeholder="imagen"required>
+    </li>
+    <li>
+      <input type="submit" id="vender" value="cargar">
+    </li>
+  </ul>
+  `;
+    miCja.append(card0);
+    card1.innerHTML = `
+    
+    <button id="clear">refrescar</button>
     <h4 class="titulo">vende y ingresa tus productosno</h4>
   <img src="https://cdn.palbincdn.com/images/blog/gallery/vender-comida-por-internet@x1600--s1.png" class="" width="400px" height="500px"  alt="">
   `;
-    miCja.append(card);
-    let continuar = true;
+    miCja.append(card1);
+    let vender = document.getElementById('vender');
+    let titulo = document.getElementById('titulo');
+    let imagen = document.getElementById('imagen');
+    let precio = document.getElementById('precio');
+    let codigo = document.getElementById('codigo');
 
-    while (continuar) {
-
-        let ingreso = prompt('Ingresa nombre, precio, codigo, imagen separados por (*). Ingresa X para finalizar');
-
-        if (ingreso.toUpperCase() == 'X') {
-            continuar = false;
-            break;
-        }
-        let datos = ingreso.split('*');
-
-        const vendedor = new cargar(datos[0], datos[1], datos[2], datos[3]);
+    vender.addEventListener('click', () => {
+       card1.className = 'conts';
+        const vendedor = new cargar(titulo.value, precio.value, codigo.value, imagen.value);
 
         usuario.push(vendedor);
 
         vendedor.asignarId(usuario);
-
-
-
-        card.innerHTML = `
+        const card2 = document.createElement('div');
+        card2.innerHTML = `
+        <button id="clear">refrescar</button>
     <h4 class="titulo">${vendedor.nombre}</h4>
     <img src=" ${vendedor.imagen}" class="" width="400px" height="500px"  alt="">
     <div class="card-body">
         <span id="precio">$ ${vendedor.precio}</span>
     </div>
     <div class="card-footer">
-    <a href="#" class="btn btn-primary">gracias por vender</a></div>`;
+    <a href="./page/clas.html"id="btnvendr" class="btn btn-primary">vender</a></div>`;
+
+        miCja.append(card2);
+
+    })
+}
+)
+
+ver.addEventListener('click', () => {
+
+
+    for (let index = 0; index < usuario.length; index++) {
+        const element = usuario[index];
+        const card = document.createElement('div');
+        card.innerHTML = `
+    <h4 class="titulo">${element.nombre}</h4>
+    <img src=" ${element.imagen}" class="" width="400px" height="500px"  alt="">
+    <div class="card-body">
+        <span id="precio">$ ${element.precio}</span>
+    </div>
+    <div class="card-footer">
+    <a href="./page/clas.html"id="misCompras" class="btn btn-primary">comprar</a></div>`;
         miCja.append(card);
 
     }
+});
 
-}
+buscar.addEventListener('click', () => {
 
+    let contenido = document.getElementById('buscar');
+    let entrada = contenido.value;
+    let resaltado = usuario.filter((ele) => { return ele.nombre.toLowerCase() == entrada.toLowerCase() });
+    const card3 = document.createElement('div');
+    if (resaltado.length > 0) {
+        card3.innerHTML = `
+                    <h4 class="titulo">${resaltado[0].nombre}</h4>
+                    <img src=" ${resaltado[0].imagen}" class="" width="400px" height="500px"  alt="">
+                    <div class="card-body">
+                        <span id="precio">$ ${resaltado[0].precio}</span>
+                    <div class="card-footer">
+                    <a href="./page/clas.html" class="btn btn-primary">comprar</a></div>`;
+        miCja.append(card3);
+    } else {
+       
+        const card1 = document.createElement('div');
+        card1.innerHTML = `
+        <h4 class="titulo">no tenemos nada de ese producto</h4>
+        <img src="https://imagenes.20minutos.es/files/image_990_v3/uploads/imagenes/2021/11/24/google-imagenes-2.png" class="" width="400px" height="500px"  alt="">
+        `;
+         miCja.append(card1);
+    }
+
+})
