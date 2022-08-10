@@ -6,37 +6,66 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Clase </title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
   <nav>
     <ul>
-
       <li>
         <h1>inicio</h1>
       </li>
       <li>
-        <input type="text" id="buscar" placeholder="Buscar">
+        <input type="text" id="buscar" placeholder="Buscar" required>
       </li>
       <li>
-        <input type="submit" id="btnbuscar" value="Buscar">
+        <button id="btnbuscar">
+           BUSCAR
+          <div id="clip">
+            <div id="leftTop" class="corner"></div>
+            <div id="rightBottom" class="corner"></div>
+            <div id="rightTop" class="corner"></div>
+            <div id="leftBottom" class="corner"></div>
+          </div>
+          <span id="rightArrow" class="arrow"></span>
+          <span id="leftArrow" class="arrow"></span>
+        </button>
       </li>
-      <li><button id="btnvender">vender</button></li>
-
+      <li>
+        <button id="btnvender" class="miBoton">
+          vender
+          <div id="clip">
+            <div id="leftTop" class="corner"></div>
+            <div id="rightBottom" class="corner"></div>
+            <div id="rightTop" class="corner"></div>
+            <div id="leftBottom" class="corner"></div>
+          </div>
+          <span id="rightArrow" class="arrow"></span>
+          <span id="leftArrow" class="arrow"></span>
+        </button>
+      </li>
     </ul>
 
   </nav>
-  <header   class="header">
+  <header class="header">
 
     <h1>
       tienda
-      <button id="catalogo">ver catalogo</button>
     </h1>
+    <button id="catalogo" class="miBoton">
+      ver catalogo
+      <div id="clip">
+        <div id="leftTop" class="corner"></div>
+        <div id="rightBottom" class="corner"></div>
+        <div id="rightTop" class="corner"></div>
+        <div id="leftBottom" class="corner"></div>
+      </div>
+      <span id="rightArrow" class="arrow"></span>
+      <span id="leftArrow" class="arrow"></span>
+    </button>
   </header>
   <main>
-
-
     <div id="contenedor">
     </div>
   </main>
@@ -44,6 +73,8 @@
 
   </footer>
 
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="./js/javassscript.js"></script>
 </body>
 

@@ -31,25 +31,25 @@ nav ul li{
   text-align: center;
   justify-items: center;
 }
-#btnbuscar{
-  background-color: white;
-  color: black;
-}
+
 body {
-  background: rgb(243, 244, 252);
-  background: url('../img/uno.jpg');
-  background-size: cover;
-  background-attachment: fixed;
+  background: rgb(0, 1, 9);
+  color: rgb(255, 255, 255);
 }
 
+#buscar{
+  height:4em ;
+  width:11em;
+}
 header {
   margin: auto;
   text-align: center;
 }
 
 h1 {
-  color: white;
-  background-color: rgb(0, 0, 0);
+  margin:20PX;
+  color: rgb(255, 255, 255);
+  background-color: rgba(0, 0, 0, 0);
   font-size: 50px;
   font-weight: 200;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -58,38 +58,12 @@ h1 {
   display: inline-block;
 }
 
-form {
-  background-color: transparent;
-  margin: auto;
-}
-
-fieldset {
-  background-color: black;
-  color: white;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-items: center;
-  text-align: center;
-  width: 50%;
-}
-
 input {
   width: 50%;
   margin: auto;
   padding: 5px;
   text-align: center;
-  background-color: rgb(255, 255, 255);
-}
-
-#btn {
-  align-items: center;
-  justify-content: center;
-  background: royalblue;
-  color: white;
-  width: 50%;
-  cursor: pointer;
+  background-color: rgb(254, 254, 254);
 }
 
 legend {
@@ -97,20 +71,6 @@ legend {
   border-radius: 30px;
 }
 
-.cja {
-  background-color: black;
-  border-radius: 30px;
-  text-align: center;
-  display: flex;
-  color: white;
-  flex-direction: row;
-  margin: auto;
-  height: 300px;
-  width: 800px;
-  align-content: center;
-  justify-content: space-evenly;
-  align-items: center;
-}
 #contenedor{
   display: flex;
   justify-content: center;
@@ -119,12 +79,194 @@ legend {
   margin: auto;
   text-decoration: none;
   flex-direction: column;
-  background-color: rgb(19, 32, 151);
-  color: white;
+  background-color: rgb(60, 62, 83);
+  padding-top: 10px;
+  color: rgb(255, 255, 255);
 }
 a{
+  padding-top: 10px;
   text-decoration: none;
-  color: white;
+  color: rgb(255, 255, 255);
   text-transform: uppercase;
   font-size: 20px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+button {
+ cursor: pointer;
+  margin:30px;
+  position: relative;
+  width: 11em;
+  height: 4em;
+  outline: none;
+  transition: 0.1s;
+  background-color: transparent;
+  border: none;
+  font-size: 13px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+#clip {
+  --color: #ffffff;
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border: 5px double var(--color);
+  box-shadow: inset 0px 0px 15px #4b565d;
+  -webkit-clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+}
+
+.arrow {
+  position: absolute;
+  transition: 0.2s;
+  background-color: #ffffff;
+  top: 35%;
+  width: 11%;
+  height: 30%;
+}
+
+#leftArrow {
+  left: -13.5%;
+  -webkit-clip-path: polygon(100% 0, 100% 100%, 0 50%);
+}
+
+#rightArrow {
+  -webkit-clip-path: polygon(100% 49%, 0 0, 0 100%);
+  left: 102%;
+}
+
+button:hover #rightArrow {
+  background-color: #000000;
+  left: -15%;
+  animation: 0.6s ease-in-out both infinite alternate rightArrow8;
+}
+
+button:hover #leftArrow {
+  background-color: #000000;
+  left: 103%;
+  animation: 0.6s ease-in-out both infinite alternate leftArrow8;
+}
+
+.corner {
+  position: absolute;
+  width: 4em;
+  height: 4em;
+  background-color: #ffffff;
+  box-shadow: inset 1px 1px 8px #767f85;
+  transform: scale(1) rotate(45deg);
+  transition: 0.2s;
+}
+
+#rightTop {
+  top: -1.98em;
+  left: 91%;
+}
+
+#leftTop {
+  top: -1.96em;
+  left: -3.0em;
+}
+
+#leftBottom {
+  top: 2.10em;
+  left: -2.15em;
+}
+
+#rightBottom {
+  top: 45%;
+  left: 88%;
+}
+
+button:hover #leftTop {
+  animation: 0.1s ease-in-out 0.05s both changeColor8,
+  0.2s linear 0.4s both lightEffect8;
+}
+
+button:hover #rightTop {
+  animation: 0.1s ease-in-out 0.15s both changeColor8,
+  0.2s linear 0.4s both lightEffect8;
+}
+
+button:hover #rightBottom {
+  animation: 0.1s ease-in-out 0.25s both changeColor8,
+  0.2s linear 0.4s both lightEffect8;
+}
+
+button:hover #leftBottom {
+  animation: 0.1s ease-in-out 0.35s both changeColor8,
+  0.2s linear 0.4s both lightEffect8;
+}
+
+button:hover .corner {
+  transform: scale(1.25) rotate(45deg);
+}
+
+button:hover #clip {
+  animation: 0.2s ease-in-out 0.55s both greenLight8;
+  --color: #000000;
+}
+
+@keyframes changeColor8 {
+  from {
+    background-color: #ffffff;
+  }
+
+  to {
+    background-color: #000000;
+  }
+}
+
+@keyframes lightEffect8 {
+  from {
+    box-shadow: 1px 1px 5px #000000;
+  }
+
+  to {
+    box-shadow: 0 0 2px #000000;
+  }
+}
+
+@keyframes greenLight8 {
+  from {
+  }
+
+  to {
+    box-shadow: inset 0px 0px 32px #000000;
+  }
+}
+
+@keyframes leftArrow8 {
+  from {
+    transform: translate(0px);
+  }
+
+  to {
+    transform: translateX(10px);
+  }
+}
+
+@keyframes rightArrow8 {
+  from {
+    transform: translate(0px);
+  }
+
+  to {
+    transform: translateX(-10px);
+  }
+}
+
+

@@ -66,7 +66,7 @@ let usuario = [{
     precio: 134999,
     imagen: './img/carpa.png'
 }];
-function refrescar() {location.reload();}
+function refrescar() { location.reload(); }
 
 let miCja = document.getElementById('contenedor');
 class cargar {
@@ -89,9 +89,8 @@ let vender = document.getElementById('btnvender');
 
 
 vender.addEventListener('click', () => {
-    const card0 = document.createElement('div');
-    const card1 = document.createElement('div');
-    card0.innerHTML = `
+
+    card.innerHTML = `
      <ul class="vender">
     <li>
       <input type="text" id="titulo" placeholder="titulo"required>
@@ -110,14 +109,14 @@ vender.addEventListener('click', () => {
     </li>
   </ul>
   `;
-    miCja.append(card0);
-    card1.innerHTML = `
+    miCja.append(card);
+    card.innerHTML = `
     
     <button id="clear">refrescar</button>
     <h4 class="titulo">vende y ingresa tus productosno</h4>
   <img src="https://cdn.palbincdn.com/images/blog/gallery/vender-comida-por-internet@x1600--s1.png" class="" width="400px" height="500px"  alt="">
   `;
-    miCja.append(card1);
+    miCja.append(card);
     let vender = document.getElementById('vender');
     let titulo = document.getElementById('titulo');
     let imagen = document.getElementById('imagen');
@@ -125,24 +124,21 @@ vender.addEventListener('click', () => {
     let codigo = document.getElementById('codigo');
 
     vender.addEventListener('click', () => {
-       card1.className = 'conts';
         const vendedor = new cargar(titulo.value, precio.value, codigo.value, imagen.value);
 
         usuario.push(vendedor);
 
         vendedor.asignarId(usuario);
-        const card2 = document.createElement('div');
-        card2.innerHTML = `
-        <button id="clear">refrescar</button>
+        card.innerHTML = `
     <h4 class="titulo">${vendedor.nombre}</h4>
     <img src=" ${vendedor.imagen}" class="" width="400px" height="500px"  alt="">
     <div class="card-body">
         <span id="precio">$ ${vendedor.precio}</span>
     </div>
     <div class="card-footer">
-    <a href="./page/clas.html"id="btnvendr" class="btn btn-primary">vender</a></div>`;
+    <a href="./page/clas.html"id="btnvendr" class="miBoton">vender</a></div>`;
 
-        miCja.append(card2);
+        miCja.append(card);
 
     })
 }
@@ -150,19 +146,19 @@ vender.addEventListener('click', () => {
 
 ver.addEventListener('click', () => {
 
-
     for (let index = 0; index < usuario.length; index++) {
         const element = usuario[index];
-        const card = document.createElement('div');
-        card.innerHTML = `
+        let cards = document.createElement('div');
+        cards.innerHTML = `
     <h4 class="titulo">${element.nombre}</h4>
     <img src=" ${element.imagen}" class="" width="400px" height="500px"  alt="">
     <div class="card-body">
         <span id="precio">$ ${element.precio}</span>
     </div>
     <div class="card-footer">
-    <a href="./page/clas.html"id="misCompras" class="btn btn-primary">comprar</a></div>`;
-        miCja.append(card);
+    <a href="./page/clas.html"id="misCompras"class="miBoton">comprar</a></div>`;
+    miCja.append(card);
+    card.append(cards);
 
     }
 });
@@ -172,24 +168,52 @@ buscar.addEventListener('click', () => {
     let contenido = document.getElementById('buscar');
     let entrada = contenido.value;
     let resaltado = usuario.filter((ele) => { return ele.nombre.toLowerCase() == entrada.toLowerCase() });
-    const card3 = document.createElement('div');
     if (resaltado.length > 0) {
-        card3.innerHTML = `
+        card.innerHTML = `
                     <h4 class="titulo">${resaltado[0].nombre}</h4>
                     <img src=" ${resaltado[0].imagen}" class="" width="400px" height="500px"  alt="">
                     <div class="card-body">
                         <span id="precio">$ ${resaltado[0].precio}</span>
                     <div class="card-footer">
-                    <a href="./page/clas.html" class="btn btn-primary">comprar</a></div>`;
-        miCja.append(card3);
+                    <a href="./page/clas.html" class="miBoton">comprar</a></div>`;
+        miCja.append(card);
     } else {
-       
-        const card1 = document.createElement('div');
-        card1.innerHTML = `
-        <h4 class="titulo">no tenemos nada de ese producto</h4>
+
+        card.innerHTML = `
+        <h4 class="titulo">buscar con otro nombre</h4>
         <img src="https://imagenes.20minutos.es/files/image_990_v3/uploads/imagenes/2021/11/24/google-imagenes-2.png" class="" width="400px" height="500px"  alt="">
         `;
-         miCja.append(card1);
+        miCja.append(card);
     }
 
-})
+})/* 
+let h = document.getElementById('h');
+h.addEventListener('click', () => {
+    Toastify({
+        text: "This is a toast",
+        duration: 3000,
+        destination: "https://github.com/apvarun/toastify-js",
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "left", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
+});  
+
+let swals = document.getElementById('swals');
+swals.addEventListener('click', () => {
+    Swal.fire({
+        title: 'Sweet!',
+        text: 'Modal with a custom image.',
+        imageUrl: 'https://unsplash.it/400/200',
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: 'Custom image',
+      })
+});
+ */
