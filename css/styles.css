@@ -1,30 +1,64 @@
-* {text-align: center;
-  padding: 0%;
-  margin: 0%;
-}
-nav{
-  margin: 50px 0;
-}
-nav ul li{
-  display:inline-flex;
-  margin: auto;
-  width: 15%;
-  text-align: center;
-  text-decoration: none;
-}
-.conts{
-  display: none;
-}
-.vender{
-  display:flex;
-  background-color: black;
+.vender {
+  display: flex;
   width: 100%;
-  height: auto;
-  padding: 0%;
-  margin: 0%;
+  position: relative;
   text-decoration: none;
 }
-.vender li{
+/* From uiverse.io by @adamgiebl */
+.cssbuttons-io-button {
+  background: #000000;
+  color: rgb(255, 255, 255);
+  font-family: inherit;
+  padding: 0.35em;
+  padding-left: 1.2em;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 0.9em;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.6em -0.6em #ffffff00;
+  overflow: hidden;
+  position: relative;
+  height: 2.8em;
+  padding-right: 3.3em;
+ }
+ 
+ .cssbuttons-io-button .icon {
+  background: rgb(255, 0, 0);
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 0.7em;
+  box-shadow: 0.1em 0.1em 0.6em 0.2em #000000;
+  right: 0.3em;
+  transition: all 0.3s;
+ }
+ 
+ .cssbuttons-io-button:hover .icon {
+  width: calc(100% - 0.6em);
+ }
+ 
+ .cssbuttons-io-button .icon svg {
+  width: 1.1em;
+  transition: transform 0.3s;
+  color: #ffffff;
+ }
+ 
+ .cssbuttons-io-button:hover .icon svg {
+  transform: translateX(0.1em);
+ }
+ 
+ .cssbuttons-io-button:active .icon {
+  transform: scale(0.95);
+ }
+ 
+.vender li {
   margin: 50px 0;
   width: 100%;
   text-decoration: none;
@@ -32,22 +66,111 @@ nav ul li{
   justify-items: center;
 }
 
+footer ,.centrar {
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  justify-content: center;
+  align-items: center;
+}
+
+/* From uiverse.io by @pedertanberg */
+.loader {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  transform: rotate(45deg);
+  transform-origin: 40px 40px;
+}
+
+.loader div {
+  top: 32px;
+  left: 32px;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background: red;
+  animation: loader45 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.loader div:after,
+.loader div:before {
+  content: " ";
+  position: absolute;
+  display: block;
+  width: 32px;
+  height: 32px;
+  background: red;
+}
+
+.loader div:before {
+  left: -24px;
+  border-radius: 50% 0 0 50%;
+}
+
+.loader div:after {
+  top: -24px;
+  border-radius: 50% 50% 0 0;
+}
+
+@keyframes loader45 {
+  0% {
+    transform: scale(0.95);
+  }
+
+  5% {
+    transform: scale(1.1);
+  }
+
+  39% {
+    transform: scale(0.85);
+  }
+
+  45% {
+    transform: scale(1);
+  }
+
+  60% {
+    transform: scale(0.95);
+  }
+
+  100% {
+    transform: scale(0.9);
+  }
+}
+
 body {
   background: rgb(0, 1, 9);
   color: rgb(255, 255, 255);
 }
 
-#buscar{
-  height:4em ;
-  width:11em;
+#buscar {
+  height: 4em;
+  width: 11em;
 }
+
+button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 19px;
+}
+
 header {
   margin: auto;
   text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  flex-direction: row;
+  align-content: stretch;
+  justify-content: space-between;
 }
 
+
 h1 {
-  margin:20PX;
+  margin: 20PX;
   color: rgb(255, 255, 255);
   background-color: rgba(0, 0, 0, 0);
   font-size: 50px;
@@ -71,19 +194,7 @@ legend {
   border-radius: 30px;
 }
 
-#contenedor{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin: auto;
-  text-decoration: none;
-  flex-direction: column;
-  background-color: rgb(60, 62, 83);
-  padding-top: 10px;
-  color: rgb(255, 255, 255);
-}
-a{
+a {
   padding-top: 10px;
   text-decoration: none;
   color: rgb(255, 255, 255);
@@ -93,180 +204,196 @@ a{
 
 
 
-
-
-
-
-
-
-
-
-
-
-button {
- cursor: pointer;
-  margin:30px;
-  position: relative;
-  width: 11em;
-  height: 4em;
-  outline: none;
-  transition: 0.1s;
-  background-color: transparent;
-  border: none;
-  font-size: 13px;
-  font-weight: bold;
-  color: #ffffff;
+.spinner {
+  height: 50px;
+  width: max-content;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: monospace;
+  letter-spacing: 1em;
+  color: #f5f5f5;
+  filter: drop-shadow(0 0 10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#clip {
-  --color: #ffffff;
-  position: absolute;
-  top: 0;
-  overflow: hidden;
-  width: 100%;
+.spinner span {
+  animation: loading6454 1.75s ease infinite;
+}
+
+.spinner span:nth-child(2) {
+  animation-delay: 0.25s;
+}
+
+.spinner span:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+.spinner span:nth-child(4) {
+  animation-delay: 0.75s;
+}
+
+.spinner span:nth-child(5) {
+  animation-delay: 1s;
+}
+
+.spinner span:nth-child(6) {
+  animation-delay: 1.25s;
+}
+
+.spinner span:nth-child(7) {
+  animation-delay: 1.5s;
+}
+
+@keyframes loading6454 {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+
+
+
+
+.mio {
+  width: 44px;
+  height: 44px;
+  animation: spinner-y0fdc1 2s infinite ease;
+  transform-style: preserve-3d;
+}
+
+.mio>div {
+  background-color: rgba(0, 77, 255, 0.2);
   height: 100%;
-  border: 5px double var(--color);
-  box-shadow: inset 0px 0px 15px #4b565d;
-  -webkit-clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
-}
-
-.arrow {
   position: absolute;
-  transition: 0.2s;
-  background-color: #ffffff;
-  top: 35%;
-  width: 11%;
-  height: 30%;
+  width: 100%;
+  border: 2px solid #004dff;
 }
 
-#leftArrow {
-  left: -13.5%;
-  -webkit-clip-path: polygon(100% 0, 100% 100%, 0 50%);
+.mio div:nth-of-type(1) {
+  transform: translateZ(-22px) rotateY(180deg);
 }
 
-#rightArrow {
-  -webkit-clip-path: polygon(100% 49%, 0 0, 0 100%);
-  left: 102%;
+.mio div:nth-of-type(2) {
+  transform: rotateY(-270deg) translateX(50%);
+  transform-origin: top right;
 }
 
-button:hover #rightArrow {
+.mio div:nth-of-type(3) {
+  transform: rotateY(270deg) translateX(-50%);
+  transform-origin: center left;
+}
+
+.mio div:nth-of-type(4) {
+  transform: rotateX(90deg) translateY(-50%);
+  transform-origin: top center;
+}
+
+.mio div:nth-of-type(5) {
+  transform: rotateX(-90deg) translateY(50%);
+  transform-origin: bottom center;
+}
+
+.mio div:nth-of-type(6) {
+  transform: translateZ(22px);
+}
+
+@keyframes spinner-y0fdc1 {
+  0% {
+    transform: rotate(45deg) rotateX(-25deg) rotateY(25deg);
+  }
+
+  50% {
+    transform: rotate(45deg) rotateX(-385deg) rotateY(25deg);
+  }
+
+  100% {
+    transform: rotate(45deg) rotateX(-385deg) rotateY(385deg);
+  }
+}
+
+
+
+.card {
+  width: 300px;
+  height: auto;
+  padding: .8em;
+  background: #5d5d5d;
+  position: relative;
+  overflow: visible;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.card-img {
+  overflow: hidden;
   background-color: #000000;
-  left: -15%;
-  animation: 0.6s ease-in-out both infinite alternate rightArrow8;
+  height: 300px;
+  width: 100%;
+  border-radius: .5rem;
+  transition: .3s ease;
 }
 
-button:hover #leftArrow {
-  background-color: #000000;
-  left: 103%;
-  animation: 0.6s ease-in-out both infinite alternate leftArrow8;
+.card-info {
+  padding-top: 10%;
 }
 
-.corner {
-  position: absolute;
-  width: 4em;
-  height: 4em;
+svg {
+  width: 20px;
+  height: 20px;
+}
+
+.card-footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid rgb(0, 0, 0);
+}
+
+/*Text*/
+.text-title {
+  font-weight: 900;
+  font-size: 1.2em;
+  line-height: 1.5;
+}
+
+.text-body {
+  font-size: .9em;
+  padding-bottom: 10px;
+}
+
+/*Button*/
+.card-button {
+  height: auto;
+  border: 1px solid #fcfcfc;
+  display: flex;
+  padding: .1em;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: .3s ease-in-out;
+}
+
+/*Hover*/
+.card-img:hover {
+  transform: translateY(-25%);
+  box-shadow: rgba(226, 196, 63, 0.25) 0px 13px 47px -5px, rgba(180, 71, 71, 0.3) 0px 8px 16px -8px;
+}
+
+.card-button:hover {
+  color: white;
+  border: 1px solid #000000;
   background-color: #ffffff;
-  box-shadow: inset 1px 1px 8px #767f85;
-  transform: scale(1) rotate(45deg);
-  transition: 0.2s;
 }
 
-#rightTop {
-  top: -1.98em;
-  left: 91%;
+#contenedor{ 
+  display: flex;
+justify-content: center;
 }
-
-#leftTop {
-  top: -1.96em;
-  left: -3.0em;
-}
-
-#leftBottom {
-  top: 2.10em;
-  left: -2.15em;
-}
-
-#rightBottom {
-  top: 45%;
-  left: 88%;
-}
-
-button:hover #leftTop {
-  animation: 0.1s ease-in-out 0.05s both changeColor8,
-  0.2s linear 0.4s both lightEffect8;
-}
-
-button:hover #rightTop {
-  animation: 0.1s ease-in-out 0.15s both changeColor8,
-  0.2s linear 0.4s both lightEffect8;
-}
-
-button:hover #rightBottom {
-  animation: 0.1s ease-in-out 0.25s both changeColor8,
-  0.2s linear 0.4s both lightEffect8;
-}
-
-button:hover #leftBottom {
-  animation: 0.1s ease-in-out 0.35s both changeColor8,
-  0.2s linear 0.4s both lightEffect8;
-}
-
-button:hover .corner {
-  transform: scale(1.25) rotate(45deg);
-}
-
-button:hover #clip {
-  animation: 0.2s ease-in-out 0.55s both greenLight8;
-  --color: #000000;
-}
-
-@keyframes changeColor8 {
-  from {
-    background-color: #ffffff;
-  }
-
-  to {
-    background-color: #000000;
-  }
-}
-
-@keyframes lightEffect8 {
-  from {
-    box-shadow: 1px 1px 5px #000000;
-  }
-
-  to {
-    box-shadow: 0 0 2px #000000;
-  }
-}
-
-@keyframes greenLight8 {
-  from {
-  }
-
-  to {
-    box-shadow: inset 0px 0px 32px #000000;
-  }
-}
-
-@keyframes leftArrow8 {
-  from {
-    transform: translate(0px);
-  }
-
-  to {
-    transform: translateX(10px);
-  }
-}
-
-@keyframes rightArrow8 {
-  from {
-    transform: translate(0px);
-  }
-
-  to {
-    transform: translateX(-10px);
-  }
-}
-
-
