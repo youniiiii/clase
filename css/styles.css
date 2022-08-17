@@ -4,6 +4,12 @@
   position: relative;
   text-decoration: none;
 }
+
+h3 {
+  color: black;
+  background-color: chocolate;
+}
+
 /* From uiverse.io by @adamgiebl */
 .cssbuttons-io-button {
   background: #000000;
@@ -23,9 +29,9 @@
   position: relative;
   height: 2.8em;
   padding-right: 3.3em;
- }
- 
- .cssbuttons-io-button .icon {
+}
+
+.cssbuttons-io-button .icon {
   background: rgb(255, 0, 0);
   margin-left: 1em;
   position: absolute;
@@ -38,26 +44,26 @@
   box-shadow: 0.1em 0.1em 0.6em 0.2em #000000;
   right: 0.3em;
   transition: all 0.3s;
- }
- 
- .cssbuttons-io-button:hover .icon {
+}
+
+.cssbuttons-io-button:hover .icon {
   width: calc(100% - 0.6em);
- }
- 
- .cssbuttons-io-button .icon svg {
+}
+
+.cssbuttons-io-button .icon svg {
   width: 1.1em;
   transition: transform 0.3s;
   color: #ffffff;
- }
- 
- .cssbuttons-io-button:hover .icon svg {
+}
+
+.cssbuttons-io-button:hover .icon svg {
   transform: translateX(0.1em);
- }
- 
- .cssbuttons-io-button:active .icon {
+}
+
+.cssbuttons-io-button:active .icon {
   transform: scale(0.95);
- }
- 
+}
+
 .vender li {
   margin: 50px 0;
   width: 100%;
@@ -66,7 +72,8 @@
   justify-items: center;
 }
 
-footer ,.centrar {
+footer,
+.centrar {
   display: flex;
   flex-wrap: nowrap;
   align-content: stretch;
@@ -319,7 +326,9 @@ a {
   }
 }
 
-
+.spar{
+  margin-top:15px;
+}
 
 .card {
   width: 300px;
@@ -393,7 +402,100 @@ svg {
   background-color: #ffffff;
 }
 
-#contenedor{ 
+
+/* From uiverse.io by @alexruix */
+.cas {
+  width: 190px;
+  padding: 1.9rem 1.2rem;
+  text-align: center;
+  background: #2a2b38;
+}
+
+/*Inputs*/
+.field {
+  margin-top: .5rem;
   display: flex;
-justify-content: center;
+  align-items: center;
+  justify-content: center;
+  gap: .5em;
+  background-color: #1f2029;
+  border-radius: 4px;
+  padding: .5em 1em;
+}
+
+.input-icon {
+  height: 1em;
+  width: 1em;
+  fill: #ffeba7;
+}
+
+.input-field {
+  background: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  color: #d3d3d3;
+}
+
+/*Text*/
+.title {
+  margin-bottom: 1rem;
+  font-size: 1.5em;
+  font-weight: 500;
+  color: #f5f5f5;
+}
+
+/*Buttons*/
+.btn {
+  margin: 1rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: .8em;
+  text-transform: uppercase;
+  padding: 0.6em 1.2em;
+  background-color: #000000;
+  color: #003cff;
+  box-shadow: 0 8px 24px 0 rgb(255 235 167 / 20%);
+  transition: all .3s ease-in-out;
+}
+
+.btn-link {
+  color: #f5f5f5;
+  display: block;
+  font-size: .75em;
+  transition: color .3s ease-out;
+}
+
+/*Hover & focus*/
+.field input:focus::placeholder {
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.btn:hover {
+  background-color: #000000;
+  color: #ffffff;
+  box-shadow: 0 8px 24px 0 rgba(112, 16, 16, 0.2);
+}
+
+.btn-link:hover {
+  color: #ff0000;
+}
+#contenedor{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  align-content: stretch;  
+  color:#f5f5f5;
+}
+table{
+  background-color:rgb(136, 175, 17);
+}
+.modal-backdrop{
+  display: none;
+  position: none-;
+  border-radius:35px;
 }

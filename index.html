@@ -16,24 +16,16 @@
 
 <body>
 
-  <nav class="navbar navbar-dark bg-dark d-none toggles ">
+  <nav class="navbar navbar-dark bg-dark  ">
     <div class="container-fluid">
       <a class="navbar-brand">
         <h1>io ventas</h1>
       </a>
-      <form class="d-flex" role="search">
+      <form class="d-none"" role="search">
         <input class="form-control me-2" type="text" id="buscar" placeholder="Search" aria-label="Search">
         <button class="btn active border-0" id="btnbuscar" type="submit"> BUSCAR
-          <div id="clip">
-            <div id="leftTop" class="corner"></div>
-            <div id="rightBottom" class="corner"></div>
-            <div id="rightTop" class="corner"></div>
-            <div id="leftBottom" class="corner"></div>
-          </div>
-          <span id="rightArrow" class="arrow"></span>
-          <span id="leftArrow" class="arrow"></span>
         </button>
-        <button class="cssbuttons-io-button" type="button">salir
+        <button class="cssbuttons-io-button  type="button">salir
           <div class="icon">
             <svg height="24" width="24" viewBox="0 0 24 24" id="btnLogout" xmlns="http://www.w3.org/2000/svg">
               <path d="M0 0h24v24H0z" fill="none"></path>
@@ -68,34 +60,25 @@
             <span>A</span>
             <span>s</span>
           </div>
-          <div id="loginBar" class="navbar navbar-light loginBar">
+          <p class="d-none ">bienvenido/a </p>
+          <div id="usuarui" class="d-none  "></div>
+          <div id="loginBar" class="navbar navbar-light loginBar d-none">
             <div class="container-fluid">
               <a class="navbar-brand" href="#">
-                <form class="d-flex">
+                <form class="d-flex" id="bienvenido">
                   <button id="btnModalLogin" class="btn btn-outline-primary me-2 toggles" type="button"
                     data-bs-toggle="modal" data-bs-target="#modalLogin">Login</button>
-                  <p id="nombreUsuario" class="d-none toggles">Bienvenido/a, invitado/a</p>
                 </form>
             </div>
           </div>
-          <div class="toggles">
-            <p class="lead ">
-            <h2>ingresa para ver nuestros productos</h2>
-            <p>Si no tienes usuario , por favor <span class="fakeAncla" data-bs-toggle="modal"
-                data-bs-target="#modalLogin">registrese</span></p>
-            </p>
-          </div>
-          <p class="d-none toggles ">
-            <a href="#" class="btn btn-primary my-2">
-              <button id="btnvender" class="miBoton">
+          <p class=" ">
+              <button id="btnvender" class="miBoton btn btn-secondary my-2">
                 vender
               </button>
-            </a>
-            <a href="#" class="btn btn-secondary my-2">
-              <button id="catalogo" class="miBoton">
+              <button id="catalogo" class="btn btn-secondary my-2 miBoton">
                 ver catalogo
               </button>
-            </a>
+              <button id="vercarrito" class="btn btn-success">ver carrito</button>
           </p>
         </div>
       </div>
@@ -103,18 +86,82 @@
 
   </header>
 
-  <main class="container">
+  <main>
 
-    <div id="contenedor" class="justify-content-center text-center">
+
+    <div id="contenedor" class="d-flex m-auto">
 
     </div>
+ 
+    <div class="containers toggles d-none">
+      <h4>Carrito de compras</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Item</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Acción</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody id="items"></tbody>
+        <tfoot>
+          <tr id="footer">
+            <th scope="row" colspan="5">Carrito vacío - comience a comprar!</th>
+          </tr>
+        </tfoot>
+      </table>
+      <h4>Cards</h4>
+      <div class="row" id="cards"></div>
+    </div>
+
+    <template id="template-footer"class="toggles d-none">
+      <th scope="row" colspan="2">Total productos</th>
+      <td>10</td>
+      <td>
+        <button class="btn btn-danger btn-sm" id="vaciar-carrito">
+          vaciar todo
+        </button>
+      </td>
+      <td class="font-weight-bold">$ <span>5000</span></td>
+    </template>
+
+    <template id="template-carrito"class="toggles d-none">
+      <tr>
+        <th scope="row">id</th>
+        <td>Café</td>
+        <td>1</td>
+        <td>
+          <button class="btn btn-info btn-sm mas">
+            +
+          </button>
+          <button class="btn btn-danger btn-sm menos">
+            -
+          </button>
+        </td>
+        <td>$ <span>500</span></td>
+      </tr>
+    </template>
+    <template id="template" class="m-auto"class="toggles d-none">
+      <div class="col-4 mb-1 m-auto">
+        <div class="card">
+          <div class="card-body">
+            <h4>titulo</h4>
+            <img src="" class="" width="100%" height="300px" alt="">
+            <p>precio</p>
+            <button class="micarrits btn">guardar</button>
+           <!-- // <button class="btn bg-white">comprar</button> -->
+          </div>
+        </div>
+      </div>
+    </template>
 
     <section id="guest" class="toggles">
-
-      <div class="modal " id="modalLogin" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
+      <div class="modal    " id="modalLogin" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header text-center">
               <h3 class="modal-title" id="modalLoginLabel">Ingresá</h3>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
             </div>
@@ -125,32 +172,15 @@
                 required>
             </div>
             <div class="modal-footer d-block">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="recordarme">
-                <label class="form-check-label" for="recordarme">
-                  Recordarme en este equipo
-                </label>
-              </div>
               <button class="btn btn-outline-primary" id="login" type="submit">Ingresar</button>
             </div>
           </div>
         </div>
       </div>
-
     </section>
+  
   </main>
 
-
-
-
-
-
-
-
-
-
-
-  
   <footer>
     <div class="mio justify-content-center text-center">
       <div>io</div>
@@ -163,22 +193,10 @@
   </footer>
 
 
-
-
-
-
-
-
-
-
-
-
-
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
     crossorigin="anonymous"></script>
-
   <script src="./js/javassscript.js"></script>
 </body>
 
