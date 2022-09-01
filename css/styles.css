@@ -482,6 +482,10 @@ svg {
 .btn-link:hover {
   color: #ff0000;
 }
+h4{
+  font-size: 0.6em;
+  overflow: hidden;
+}
 #contenedor{
   display: flex;
   align-items: center;

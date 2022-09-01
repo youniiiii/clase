@@ -1,56 +1,73 @@
 
-const mailLogin = document.getElementById('emailLogin'),
-passLogin = document.getElementById('passwordLogin'),
-btnLogin = document.getElementById('login'),
-bienvenidos = document.getElementById('usuarui'),
-//aqui va todo lo que es el registro de nuevo usuario
-nombreUsuario = document.getElementById('logusers'),
-claveuser = document.getElementById('logpass'),
-emailuser = document.getElementById('logemail'),
-registrarNuevoUsuario = document.getElementById('btnregister'),
-modalEl = document.getElementById('modalLogin'),
-modal = new bootstrap.Modal(modalEl),
-toggles = document.querySelectorAll('.toggles'),
-card = document.createElement('div'),
-vercarrito =document.getElementById('vercarrito'),
-ver = document.getElementById('catalogo'),
-buscar = document.getElementById('btnbuscar'),
-vender = document.getElementById('btnvender'),
-salir = document.getElementById('salir'),
-mios = document.querySelectorAll('.mios'),
-salida = document.getElementById('btnLogout'),
-miCja = document.getElementById('contenedor'),
-micards = document.getElementById('template').content,
-templateFooter = document.getElementById('template-footer').content,
-tmCarrito = document.getElementById('template-carrito').content,
-items = document.getElementById('items'),
-footer = document.getElementById('footer');
+const card = document.createElement('div'),
+    vercarrito = document.getElementById('vercarrito'),
+    ver = document.getElementById('catalogo'),
+    buscar = document.getElementById('btnbuscar'),
+    vender = document.getElementById('btnvender'),
+    salir = document.getElementById('salir'),
+    mios = document.querySelectorAll('.mios'),
+    salida = document.getElementById('btnLogout'),
+    toggles = document.querySelectorAll('toggles'),
+    miCja = document.getElementById('contenedor'),
+    micards = document.getElementById('template').content,
+    templateFooter = document.getElementById('template-footer').content,
+    tmCarrito = document.getElementById('template-carrito').content,
+    items = document.getElementById('items'),
+    footer = document.getElementById('footer');
 const fragment = document.createDocumentFragment();
 
-document.addEventListener('DOMContentLoaded', () => {
-    fechData();
-})
-const fechData = async () => {
+ document.addEventListener('DOMContentLoaded', () => {
+
+     ver.addEventListener('click', () => {
+            miCja.innerHTML = " ";
+            intercambiarClases(toggles, 'd-none');
+    fetchData();
+    fechDatas();
+     })
+}) 
+const fechDatas = async () => {
     try {
         const response = await fetch('./js/api.json');
-        const data = await response.json();
-       ver.addEventListener('click', () => {
-        miCja.innerHTML= " ";
-        intercambiarClases(toggles, 'd-none');
-        pintarCards(data);
-       })
+        const datae = await response.json();
+        console.log(datae);
+         pinta(datae);
     } catch (err) {
         console.log(err);
     }
 };
+const fetchData = async () => {
+    try {
+        const datas = await fetch('https://fakestoreapi.com/products');
+        const data = await datas.json();
+        console.log(data);
+        pintarCards(data);
+    } catch (err) {
+         alert(err);
+         }
 
-const pintarCards = data => {
+};
+// con este comando eliminamos  lo que vamos a usar  const eliminamos = elarray.splice(pocision,cantidad);position es el numero en donde se encuentra y cantidad de datos borrados del array
+const pinta = data => {
     data.forEach(producto => {
         micards.querySelector('p').textContent = producto.precio;
         micards.querySelector('img').setAttribute('src', producto.imagen);
         micards.querySelector('button').dataset.id = producto.id;
-        // micards.querySelector('button.bg-white').dataset.id = producto.codigo;
         micards.querySelector('h4').textContent = producto.nombre;
+        const clone = micards.cloneNode(true);
+        fragment.appendChild(clone);
+    })
+    miCja.appendChild(fragment);
+}
+miCja.addEventListener('click', e => {
+    captura(e);
+    btnAumentarDisminuir(e)
+})
+const pintarCards = data => {
+    data.forEach(producto => {
+        micards.querySelector('p').textContent = producto.price;
+        micards.querySelector('img').setAttribute('src', producto.image);
+        micards.querySelector('button').dataset.id = producto.id;
+        micards.querySelector('h4').textContent = producto.title;
         const clone = micards.cloneNode(true);
         fragment.appendChild(clone);
     })
@@ -77,14 +94,14 @@ const setcarrd = objeto => {
 
 }
 function intercambiarClases(array, clase) {
-array.forEach(element => {
-    element.classList.toggle(clase);
-})
+    array.forEach(element => {
+        element.classList.toggle(clase);
+    })
 }
-let  nuevoProducto ={};
+let nuevoProducto = {};
 vercarrito.addEventListener('click', () => {
     intercambiarClases(toggles, 'd-none');
-    miCja.innerHTML= " ";
+    miCja.innerHTML = " ";
     pintarCarrito();
 })
 
@@ -98,7 +115,7 @@ function captura(e) {
             title: 'Your work has been saved',
             showConfirmButton: false,
             timer: 1500
-          })
+        })
 
         setcarrd(a);
     }
@@ -116,7 +133,6 @@ class cargarProducto {
         this.id = array.length;
     }
 }
-/* 
 buscar.addEventListener('click', () => {
     let contenido = document.getElementById('buscar');
     let entrada = contenido.value;
@@ -153,9 +169,7 @@ buscar.addEventListener('click', () => {
         `;
         miCja.append(card);
     }
-
-}) */
-
+}) 
 vender.addEventListener('click', () => {
     intercambiarClases(toggles, 'd-none');
     miCja.innerHTML = " ";
@@ -193,7 +207,7 @@ vender.addEventListener('click', () => {
     vender.addEventListener('click', () => {
         const vendedor = new cargarProducto(titulo.value, precio.value, codigo.value, imagen.value);
 
-        vendedor.asignarId( vendedor);
+        vendedor.asignarId(vendedor);
         console.log(vendedor);
         card.innerHTML = `
 
@@ -221,7 +235,7 @@ vender.addEventListener('click', () => {
                   left top
                   no-repeat
                 `
-              })
+            })
         });
     })
 }
