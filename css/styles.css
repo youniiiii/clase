@@ -3,13 +3,23 @@
   width: 100%;
   position: relative;
   text-decoration: none;
+  align-items: center;
+  justify-content: space-between;
+  align-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 
+input:hover{
+ background-color: rgb(255, 255, 255);
+}
 h3 {
   color: black;
   background-color: chocolate;
 }
-
+#usuario img {
+  border-radius: 35px;
+}
 /* From uiverse.io by @adamgiebl */
 .cssbuttons-io-button {
   background: #000000;
@@ -79,6 +89,8 @@ footer,
   align-content: stretch;
   justify-content: center;
   align-items: center;
+  background: transparent;
+  border-radius:25px;
 }
 
 /* From uiverse.io by @pedertanberg */
@@ -148,7 +160,7 @@ footer,
 }
 
 body {
-  background: rgb(0, 1, 9);
+  background: rgb(0, 2, 20);
   color: rgb(255, 255, 255);
 }
 
@@ -193,14 +205,16 @@ input {
   margin: auto;
   padding: 5px;
   text-align: center;
-  background-color: rgb(254, 254, 254);
+  background-color: rgb(0, 0, 0);
 }
 
 legend {
   background-color: black;
   border-radius: 30px;
 }
-
+.activo{
+  display:none;
+}
 a {
   padding-top: 10px;
   text-decoration: none;
@@ -472,7 +486,13 @@ svg {
   opacity: 0;
   transition: opacity .3s;
 }
-
+.botones{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: center;
+  align-content: center;
+}
 .btn:hover {
   background-color: #000000;
   color: #ffffff;
@@ -495,11 +515,59 @@ h4{
   align-content: stretch;  
   color:#f5f5f5;
 }
-table{
-  background-color:rgb(136, 175, 17);
+.offcanvas{
+  --bs-offcanvas-width: auto;
+}
+table,th,td{
+  background-color:rgb(4, 8, 121);
+  color:#fff;
 }
 .modal-backdrop{
   display: none;
   position: none-;
   border-radius:35px;
+}
+/* From uiverse.io by @liyaxu123 */
+.form-control {
+  position: relative;
+  margin: 20px 0 40px;
+  width: 190px;
+}
+
+.form-control input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px rgb(0, 0, 0) solid;
+  display: block;
+  width: 100%;
+  padding: 5px 0;
+  font-size: 18px;
+  color: rgb(27, 0, 233);
+}
+
+.form-control input:focus,
+.form-control input:valid {
+  outline: 0;
+  border-bottom-color: rgb(191, 5, 5);
+}
+
+.form-control label {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  pointer-events: none;
+}
+
+.form-control label span {
+  display: inline-block;
+  font-size: 18px;
+  min-width: 5px;
+  color: rgb(255, 0, 0);
+  transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+input{background-color: black;}
+.form-control input:focus+label span,
+.form-control input:valid+label span {
+  color: rgb(0, 0, 255);
+  transform: translateY(-30px);
 }

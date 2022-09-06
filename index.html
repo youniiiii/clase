@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>mi tienda</title>
   <link rel="shortcut icon" href="./img/log.jpg" type="image/x-icon">
-  <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
@@ -15,142 +14,153 @@
 </head>
 
 <body>
-
-  <nav class="navbar navbar-dark bg-dark  ">
+  <nav class="navbar navbar-dark bg-dark ">
     <div class="container-fluid">
-      <a class="navbar-brand">
-        <h1>io ventas</h1>
-      </a>
-        <button class="cssbuttons-io-button  type=" button">salir
-          <div class="icon">
-            <svg height="24" width="24" viewBox="0 0 24 24" id="btnLogout" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0 0h24v24H0z" fill="none"></path>
-              <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-                fill="currentColor"></path>
-            </svg>
-          </div>
-        </button>
-    </div>
-  </nav>
-
-  <nav class="navbar">
-    <div class="container-fluid">
-
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-    <div class="containers mios ">
-      <h4>Carrito de compras</h4>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Item</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Acción</th>
-            <th scope="col">Total</th>
-          </tr>
-        </thead>
-        <tbody id="items"></tbody>
-        <tfoot>
-          <tr id="footer">
-            <th scope="row" colspan="5">Carrito vacío - comience a comprar!</th>
-          </tr>
-        </tfoot>
-      </table>
-      <h4>Cards</h4>
-      <div class="row" id="cards"></div>
-    </div>
-        </div>
+      <div id="usuario" class='flex-column text-center mios d-none'>
       </div>
-    </div>
-  </nav>      
-      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
-          </ul>
-          <form class="d-flex" role="search">
-            <input class="text-center me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
-  <header class="header">
-    <section class="py-5 text-center container">
-      <div class="row py-lg-5">
-        <div class="col-lg-6 col-md-8 mx-auto">
-          <div class="spinner fw-light   centrar">
- 
-            <span>I</span>
-            <span>O</span>
-            <span>
-              <div class="loader">
-                <div></div>
+      <div class="col-lg-6 col-md-8 mx-auto navbar-brand">
+        <div class="spinner fw-light   centrar">
+          <span>I</span>
+          <span>O</span>
+          <span>
+            <div class="loader">
+              <div></div>
+            </div>
+          </span>
+          <span>V</span>
+          <span>E</span>
+          <span>N</span>
+          <span>T</span>
+          <span>A</span>
+          <span>s</span>
+        </div>
+
+      </div>
+      <button type="button" class="btn btn-primary mios" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Login
+      </button>
+      <button class="cssbuttons-io-button mios d-none" type="button">salir
+        <div class="icon">
+          <svg height="24" width="24" viewBox="0 0 24 24" id="btnLogout" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+              fill="currentColor"></path>
+          </svg>
+        </div>
+      </button>
+
+
+
+      <!-- Modal -->
+      <div class="modal fade mios" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content  centrar">
+            <div class="modal-header bg-dark text-center">
+              <h5 class="modal-title" id="staticBackdropLabel">iniciar sesion</h5>
+            </div>
+            <div class="modal-body bg-dark">
+              <div class="form-control">
+                <input type="value" id="logemail" required>
+                <label>
+                  <span style="transition-delay:0ms">U</span><span style="transition-delay:50ms">s</span><span
+                    style="transition-delay:100ms">u</span><span style="transition-delay:150ms">a</span><span
+                    style="transition-delay:200ms">r</span><span style="transition-delay:250ms">i</span><span
+                    style="transition-delay:300ms">o</span>
+                </label>
               </div>
-            </span>
-            <span>V</span>
-            <span>E</span>
-            <span>N</span>
-            <span>T</span>
-            <span>A</span>
-            <span>s</span>
-          </div>
-          <p class="d-none ">bienvenido/a </p>
-          <div id="usuarui" class="d-none"></div>
-          <div id="loginBar" class="navbar navbar-light loginBar d-none">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">
-                <form class="d-flex" id="bienvenido">
-                  <button id="btnModalLogin" class="btn btn-outline-primary me-2 mios" type="button"
-                    data-bs-toggle="modal" data-bs-target="#modalLogin">Login</button>
-                </form>
+              <div class="form-control">
+                <input type="value" id="logpass" required>
+                <label>
+                  <span style="transition-delay:0ms">C</span><span style="transition-delay:50ms">o</span><span
+                    style="transition-delay:100ms">n</span><span style="transition-delay:150ms">t</span><span
+                    style="transition-delay:200ms">r</span><span style="transition-delay:250ms">a</span><span
+                    style="transition-delay:300ms">s</span><span style="transition-delay:350ms">e</span><span
+                    style="transition-delay:400ms">ñ</span><span style="transition-delay:450ms">a</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" id="login" class="btn btn-primary">iniciar</button>
             </div>
           </div>
-          <p class=" ">
-            <button id="btnvender" class="miBoton btn btn-secondary my-2">
-              vender
-            </button>
-            <button id="catalogo" class="btn btn-secondary my-2 miBoton">
-              ver catalogo
-            </button>
-            <button id="vercarrito" class="navbar-toggler btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
-                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
-              </svg>
-            </button>
-          </p>
+        </div>
+
+      </div>
+
+  </nav>
+  <div id="cardsinicos">
+  </div>
+  <header class="header mios d-none">
+    <div class="py-5 text-center container">
+      <div class="botones">
+        <button id="btnvender" class="miBoton btn btn-secondary my-2">
+          vender
+        </button>
+        <button id="catalogo" class="btn btn-secondary my-2 miBoton">
+          ver nuevos productos
+        </button>
+        <button id="vercarrito" class="navbar-toggler btn btn-success" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4"
+            viewBox="0 0 16 16">
+            <path
+              d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  <main class="mios d-none">
+    <div class="navbar">
+      <div class="container-fluid">
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <div class="containers">
+              <h4>Carrito de compras</h4>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4"
+                        viewBox="0 0 16 16">
+                        <path
+                          d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+                      </svg>
+                    </th>
+                    <th scope="col">articulo</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Acción</th>
+                    <th scope="col">Total</th>
+                  </tr>
+                </thead>
+                <tbody id="items">
+
+                </tbody>
+                <tfoot>
+                  <tr id="footer">
+                    <th scope="row" colspan="5">Carrito vacío - comience a comprar!</th>
+                  </tr>
+                </tfoot>
+              </table>
+              <h4>Cards</h4>
+              <div class="row" id="cards"></div>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
-
-  </header>
-
-  <main>
+    </div>
 
 
     <div id="contenedor" class="d-flex m-auto">
 
     </div>
-
-
 
     <template id="template-footer" class="mios d-none">
       <th scope="row" colspan="2">Total productos</th>
@@ -162,7 +172,6 @@
       </td>
       <td class="font-weight-bold">$ <span>5000</span></td>
     </template>
-
     <template id="template-carrito" class="mios d-none">
       <tr>
         <th scope="row">id</th>
@@ -176,7 +185,7 @@
             -
           </button>
         </td>
-        <td>$ <span>500</span></td>
+        <td>$<span>500</span></td>
       </tr>
     </template>
     <template id="template" class="m-auto" class="mios d-none">
@@ -186,8 +195,7 @@
             <h4>titulo</h4>
             <img src="" class="" width="100%" height="300px" alt="">
             <p>precio</p>
-            <button class="micarrits btn">guardar</button>
-            <!-- // <button class="btn bg-white">comprar</button> -->
+            <button class="mis btn">guardar</button>
           </div>
         </div>
       </div>
@@ -200,14 +208,13 @@
             <img src="" class="" width="100%" height="300px" alt="">
             <p>precio</p>
             <button class="micarrits btn">guardar</button>
-            <!-- // <button class="btn bg-white">comprar</button> -->
           </div>
         </div>
       </div>
     </template>
 
   </main>
-  <footer>
+  <footer class="mios d-none">
     <div class="mio justify-content-center text-center">
       <div>io</div>
       <div>io</div>
@@ -217,8 +224,6 @@
       <div>io</div>
     </div>
   </footer>
-
-
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"

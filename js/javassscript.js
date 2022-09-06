@@ -2,66 +2,32 @@
 const card = document.createElement('div'),
     vercarrito = document.getElementById('vercarrito'),
     ver = document.getElementById('catalogo'),
-    buscar = document.getElementById('btnbuscar'),
-    vender = document.getElementById('btnvender'),
-    salir = document.getElementById('salir'),
+     vender = document.getElementById('btnvender'),
+    items = document.getElementById('items'),
     mios = document.querySelectorAll('.mios'),
-    salida = document.getElementById('btnLogout'),
-    toggles = document.querySelectorAll('toggles'),
     miCja = document.getElementById('contenedor'),
+    salida = document.getElementById('btnLogout'),
     micards = document.getElementById('template').content,
     templateFooter = document.getElementById('template-footer').content,
     tmCarrito = document.getElementById('template-carrito').content,
-    items = document.getElementById('items'),
-    footer = document.getElementById('footer');
+    footer = document.getElementById('footer'),
+    miUsuario = document.getElementById('usuario'),
+    logemail = document.getElementById('logemail'),
+    logpass = document.getElementById('logpass'),
+    login = document.getElementById('login');
 const fragment = document.createDocumentFragment();
 
- document.addEventListener('DOMContentLoaded', () => {
-
-     ver.addEventListener('click', () => {
-            miCja.innerHTML = " ";
-            intercambiarClases(toggles, 'd-none');
-    fetchData();
-    fechDatas();
-     })
-}) 
-const fechDatas = async () => {
-    try {
-        const response = await fetch('./js/api.json');
-        const datae = await response.json();
-        console.log(datae);
-         pinta(datae);
-    } catch (err) {
-        console.log(err);
-    }
-};
 const fetchData = async () => {
     try {
         const datas = await fetch('https://fakestoreapi.com/products');
         const data = await datas.json();
-        console.log(data);
+        guardarArticulos(data);
         pintarCards(data);
     } catch (err) {
-         alert(err);
-         }
-
+        alert(err);
+    }
 };
-// con este comando eliminamos  lo que vamos a usar  const eliminamos = elarray.splice(pocision,cantidad);position es el numero en donde se encuentra y cantidad de datos borrados del array
-const pinta = data => {
-    data.forEach(producto => {
-        micards.querySelector('p').textContent = producto.precio;
-        micards.querySelector('img').setAttribute('src', producto.imagen);
-        micards.querySelector('button').dataset.id = producto.id;
-        micards.querySelector('h4').textContent = producto.nombre;
-        const clone = micards.cloneNode(true);
-        fragment.appendChild(clone);
-    })
-    miCja.appendChild(fragment);
-}
-miCja.addEventListener('click', e => {
-    captura(e);
-    btnAumentarDisminuir(e)
-})
+
 const pintarCards = data => {
     data.forEach(producto => {
         micards.querySelector('p').textContent = producto.price;
@@ -73,55 +39,121 @@ const pintarCards = data => {
     })
     miCja.appendChild(fragment);
 }
-miCja.addEventListener('click', e => {
-    captura(e);
-    btnAumentarDisminuir(e)
-})
 
 let carrito = {}
-const setcarrd = objeto => {
-    const producto = {
-        id: objeto.querySelector('button.micarrits').dataset.id,
-        nombre: objeto.querySelector('h4').textContent,
-        precio: objeto.querySelector('p').textContent,
-        imagen: objeto.querySelector('img').src,
-        cantidad: 1
-    }
-    if (carrito.hasOwnProperty(producto.id)) {
-        producto.cantidad = carrito[producto.id].cantidad + 1;
-    }
-    carrito[producto.id] = { ...producto };
+let nuevoProducto = {};
+const usuarios = [{
+    nombre: 'Belen',
+    mail: 'belen@mail.com',
+    pass: 'belen',
+    image: 'https://www.espaciotrascender.com/wp-content/uploads/2019/02/Foto-7-CLAVES-INFALTABLES-PARA-CAUTIVAR-CON-TU-IMAGEN-PERSONAL-Y-PROFESIONAL.jpg'
 
+},
+{
+    nombre: 'yoni',
+    mail: 'yoni@mail.com',
+    pass: 'yoni',
+    image: 'http://ambitodelaeducacion.com/wp-content/uploads/2014/05/Imagen-personal.jpg'
+
+}]
+
+const btnAumentarDisminuir = e => {
+    if (e.target.classList.contains('mas')) {
+        const producto = carrito[e.target.dataset.id]
+        producto.cantidad++
+        carrito[e.target.dataset.id] = { ...producto }
+        pintarCarrito()
+    }
+    if (e.target.classList.contains('menos')) {
+        const producto = carrito[e.target.dataset.id]
+        producto.cantidad--
+        if (producto.cantidad === 0) {
+            delete carrito[e.target.dataset.id]
+        } else {
+            carrito[e.target.dataset.id] = { ...producto }
+        }
+        pintarCarrito()
+    }
+    e.stopPropagation()
 }
-function intercambiarClases(array, clase) {
-    array.forEach(element => {
-        element.classList.toggle(clase);
+
+const pintarCarrito = () => {
+    items.innerHTML = ''
+    Object.values(carrito).forEach(producto => {
+        tmCarrito.querySelector('th').textContent = producto.id;
+        tmCarrito.querySelectorAll('td')[0].textContent = producto.nombre;
+        tmCarrito.querySelectorAll('td')[1].textContent = producto.cantidad;
+        tmCarrito.querySelector('span').textContent = producto.precio * producto.cantidad;
+        tmCarrito.querySelector('.btn-info').dataset.id = producto.id;
+        tmCarrito.querySelector('.btn-danger').dataset.id = producto.id;
+        const clone = tmCarrito.cloneNode(true)
+        fragment.appendChild(clone)
+    })
+    items.appendChild(fragment)
+    pintarFooter()
+}
+
+const pintarFooter = () => {
+    footer.innerHTML = ''
+
+    if (Object.keys(carrito).length === 0) {
+        footer.innerHTML = `
+<th scope="row" colspan="5">Carrito vacío con innerHTML</th>
+`
+        return
+    }
+    const nCantidad = Object.values(carrito).reduce((acc, { cantidad }) => acc + cantidad, 0)
+    const nPrecio = Object.values(carrito).reduce((acc, { cantidad, precio }) => acc + cantidad * precio, 0)
+
+    templateFooter.querySelectorAll('td')[0].textContent = nCantidad
+    templateFooter.querySelector('span').textContent = nPrecio
+
+    const clone = templateFooter.cloneNode(true)
+
+    fragment.appendChild(clone)
+
+    footer.appendChild(fragment)
+    const boton = document.getElementById('vaciar-carrito');
+    boton.addEventListener('click', () => {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+        swalWithBootstrapButtons.fire({
+            title: 'esta seguro?',
+            text: "perdera todos sus datos!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'si vaciar!',
+            cancelButtonText: 'No me arrepeti!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                swalWithBootstrapButtons.fire(
+                    'vacio su carrito!',
+                    'volver a seleccionar producto',
+                    'success'
+                )
+            } else if (
+                
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Your imaginary file is safe :)',
+                    'error'
+                )
+            }
+        })
+        pintarCarrito();
+        pintarFooter();
+        carrito = {};
     })
 }
-let nuevoProducto = {};
-vercarrito.addEventListener('click', () => {
-    intercambiarClases(toggles, 'd-none');
-    miCja.innerHTML = " ";
-    pintarCarrito();
-})
-
-function captura(e) {
-    if (e.target.classList.contains('micarrits')) {
-        let a = e.target.parentElement;
-
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Your work has been saved',
-            showConfirmButton: false,
-            timer: 1500
-        })
-
-        setcarrd(a);
-    }
-}
 class cargarProducto {
-
     constructor(nombre, precio, codigo, imagen, id) {
         this.id = id;
         this.nombre = nombre;
@@ -133,47 +165,155 @@ class cargarProducto {
         this.id = array.length;
     }
 }
-buscar.addEventListener('click', () => {
-    let contenido = document.getElementById('buscar');
-    let entrada = contenido.value;
-    let resaltado = data.filter((ele) => { return ele.nombre.toLowerCase() == entrada.toLowerCase() });
-    if (resaltado.length > 0) {
-        card.innerHTML = `
-        <div class="card">
-        <div class="card-img"> 
-              <img src="${resaltado[0].imagen}" class="" width="100%" height="300px"  alt="">
-        </div>
-        <div class="card-info">
-              <p class="text-title titulo">${resaltado[0].nombre}</p>
-              <p class="text-body">${resultado[0].codigo}</p>
-        </div>
-        <div class="card-footer">
-              <span class="text-title"id="precio">$${resaltado[0].precio}</span>
-          <div class="card-button">
-              <a href="./page/clas.html"id="misCompras"class="miBoton">
-              <svg class="svg-icon" viewBox="0 0 20 20">
-              <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-              <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-              <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-              </svg>
-              </a>
-          </div>
-        </div>
-     </div> `;
-        miCja.append(card);
-    } else {
 
-        card.innerHTML = `
-        <h4 class="titulo">buscar con otro nombre</h4>
-        <img src="https://imagenes.20minutos.es/files/image_990_v3/uploads/imagenes/2021/11/24/google-imagenes-2.png" class="" width="400px" height="500px"  alt="">
-        `;
-        miCja.append(card);
+const setcarrd = objeto => {
+    const producto = {
+        id: objeto.querySelector('button.mis').dataset.id,
+        nombre: objeto.querySelector('h4').textContent,
+        precio: objeto.querySelector('p').textContent,
+        imagen: objeto.querySelector('img').src,
+        cantidad: 1
     }
-}) 
-vender.addEventListener('click', () => {
-    intercambiarClases(toggles, 'd-none');
-    miCja.innerHTML = " ";
 
+    if (carrito.hasOwnProperty(producto.id)) {
+        producto.cantidad = carrito[producto.id].cantidad + 1;
+    }
+    carrito[producto.id] = { ...producto };
+}
+
+
+function guardarDatos(usuarioDB, storage) {
+
+    const usuario = {
+        'name': usuarioDB.nombre,
+        'user': usuarioDB.mail,
+        'pass': usuarioDB.pass,
+        'image': usuarioDB.image
+    }
+
+    storage.setItem('usuario', JSON.stringify(usuario));
+}
+
+
+function guardarArticulos(articulos) {
+    localStorage.setItem('articulos', JSON.stringify(articulos));
+}
+
+
+
+function guardarPDU(articulos, usuario) {
+    localStorage.setItem(usuario, JSON.stringify(articulos));
+}
+
+
+function captura(e) {
+    if (e.target.classList.contains('mis')) {
+
+        let a = e.target.parentElement;
+        setcarrd(a);
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'guardado en el carrito',
+            showConfirmButton: false,
+            timer: 1000
+          })
+    }
+}
+
+function validarUsuario(usersDB, user, pass) {
+    let encontrado = usersDB.find((userDB) => userDB.mail == user);
+
+    if (typeof encontrado === 'undefined') {
+        return false;
+    } else {
+        if (encontrado.pass != pass) {
+            return false;
+        } else {
+            return encontrado;
+        }
+    }
+}
+
+function intercambiarClases(array, clase) {
+    array.forEach(element => {
+        element.classList.toggle(clase);
+    })
+}
+
+// con este comando eliminamos  lo que vamos a usar  const eliminamos = elarray.splice(pocision,cantidad);position es el numero en donde se encuentra y cantidad de datos borrados del array
+function eliminar(array, position, cantidad) {
+    array.split(position, cantidad);
+}
+
+function saludar(usuario) {
+    miUsuario.innerHTML = ``;
+    miUsuario.innerHTML = `
+     <img src="${usuario.image}" class="" width="100px" height="100px"  alt="">
+     <h4 class="titulo">${usuario.name}</h4>
+    `
+
+}
+
+
+function recuperarUsuario(storage) {
+    let usuarioEnStorage = JSON.parse(storage.getItem('usuario'));
+    return usuarioEnStorage;
+}
+function estaLogueado(usuario) {
+    if (usuario) {
+        saludar(usuario);
+        fetchData();
+        intercambiarClases(mios, 'd-none');
+
+    }
+}
+estaLogueado(recuperarUsuario(localStorage));
+
+///eventos de botones y mas
+
+login.addEventListener("click", () => {
+    if (!logemail.value || !logpass.value) {
+        alert('Todos los campos son requeridos');
+
+    } else {
+        let data = validarUsuario(usuarios, logemail.value, logpass.value);
+        if (!data) {
+            alert(`Usuario y/o contraseña erróneos`);
+        } else {
+            Swal.fire("Bienvenido");
+            guardarDatos(data, localStorage);
+            intercambiarClases(mios, 'd-none');
+            fetchData();
+            location.reload();
+        }
+    }
+})
+
+
+salida.addEventListener('click', () => {
+    location.reload();
+    localStorage.clear();
+})
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetchData();
+})
+
+
+miCja.addEventListener('click', e => {
+    captura(e);
+})
+
+
+vercarrito.addEventListener('click', () => {
+    pintarCarrito();
+})
+
+
+vender.addEventListener('click', () => {
+    miCja.innerHTML = " ";
     card.innerHTML = `
      <ul class="vender">
     <li>
@@ -189,28 +329,27 @@ vender.addEventListener('click', () => {
       <input type="url" id="imagen" placeholder="imagen"required>
     </li>
     <li>
-      <input type="submit" id="vende" value="cargar">
+      <input  class ="btn "type="submit" id="vende" value="cargar">
     </li>
   </ul>  
    <h4 class="titulo">vende y ingresa tus productosno</h4>
   <img src="https://cdn.palbincdn.com/images/blog/gallery/vender-comida-por-internet@x1600--s1.png" class="" width="400px" height="500px"  alt="">
   
   `;
-    miCja.append(card);
 
+    miCja.append(card);
     let vender = document.getElementById('vende');
     let titulo = document.getElementById('titulo');
     let imagen = document.getElementById('imagen');
     let precio = document.getElementById('precio');
     let codigo = document.getElementById('codigo');
-
     vender.addEventListener('click', () => {
         const vendedor = new cargarProducto(titulo.value, precio.value, codigo.value, imagen.value);
-
         vendedor.asignarId(vendedor);
-        console.log(vendedor);
-        card.innerHTML = `
 
+        guardarArticulos(vendedor)
+        guardarPDU(vendedor,'Product');
+        card.innerHTML = `
     <h4 class="titulo">${vendedor.nombre}</h4>
     <img src=" ${vendedor.imagen}" class="" width="400px" height="500px"  alt="">
     <div class="card-body">
@@ -241,78 +380,21 @@ vender.addEventListener('click', () => {
 }
 )
 
+ver.addEventListener('click', ()=>{
+    let vendedor = JSON.parse(localStorage.getItem('Product'));
+    console.log(vendedor);
+    miCja.innerHTML = " ";
+    card.innerHTML = `
+    <h4 class="titulo">${vendedor.nombre}</h4>
+    <img src=" ${vendedor.imagen}" class="" width="400px" height="500px"  alt="">
+    <div class="card-body">
+        <span id="precio">$ ${vendedor.precio}</span>
+    </div>
+    <div class="card-footer">
+    <a href=""id="btnvendr" class="miBoton">vender</a></div>`;
+    miCja.append(card);
+})
 
-const pintarCarrito = () => {
-    items.innerHTML = ''
-
-    Object.values(carrito).forEach(producto => {
-        tmCarrito.querySelector('th').textContent = producto.id;
-        tmCarrito.querySelectorAll('td')[0].textContent = producto.nombre;
-        tmCarrito.querySelectorAll('td')[1].textContent = producto.cantidad;
-        tmCarrito.querySelector('span').textContent = producto.precio * producto.cantidad;
-        tmCarrito.querySelector('.btn-info').dataset.id = producto.id;
-        tmCarrito.querySelector('.btn-danger').dataset.id = producto.id;
-
-        const clone = tmCarrito.cloneNode(true)
-        fragment.appendChild(clone)
-    })
-    items.appendChild(fragment)
-
-    pintarFooter()
-    localStorage.setItem('carrito', JSON.stringify(carrito))
-}
-
-const pintarFooter = () => {
-    footer.innerHTML = ''
-
-    if (Object.keys(carrito).length === 0) {
-        footer.innerHTML = `
-<th scope="row" colspan="5">Carrito vacío con innerHTML</th>
-`
-        return
-    }
-
-    // sumar cantidad y sumar totales
-    const nCantidad = Object.values(carrito).reduce((acc, { cantidad }) => acc + cantidad, 0)
-    const nPrecio = Object.values(carrito).reduce((acc, { cantidad, precio }) => acc + cantidad * precio, 0)
-
-
-    templateFooter.querySelectorAll('td')[0].textContent = nCantidad
-    templateFooter.querySelector('span').textContent = nPrecio
-
-    const clone = templateFooter.cloneNode(true)
-    fragment.appendChild(clone)
-
-    footer.appendChild(fragment)
-
-    const boton = document.getElementById('vaciar-carrito');
-    boton.addEventListener('click', () => {
-        pintarCarrito();
-        pintarFooter();
-        carrito = {};
-    })
-}
-
-
-items.addEventListener('click', e => { btnAumentarDisminuir(e) })
-
-const btnAumentarDisminuir = e => {
-    if (e.target.classList.contains('mas')) {
-        const producto = carrito[e.target.dataset.id]
-        producto.cantidad++
-        carrito[e.target.dataset.id] = { ...producto }
-        pintarCarrito()
-    }
-
-    if (e.target.classList.contains('menos')) {
-        const producto = carrito[e.target.dataset.id]
-        producto.cantidad--
-        if (producto.cantidad === 0) {
-            delete carrito[e.target.dataset.id]
-        } else {
-            carrito[e.target.dataset.id] = { ...producto }
-        }
-        pintarCarrito()
-    }
-    e.stopPropagation()
-}
+items.addEventListener('click', e => {
+    btnAumentarDisminuir(e)
+})
